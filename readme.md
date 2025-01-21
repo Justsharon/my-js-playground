@@ -1,1 +1,1 @@
-### The purpose of these repositoryb is to train my js muscles
+### The purpose of these repository is to train my js muscles
