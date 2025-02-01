@@ -168,3 +168,135 @@ const greatIDs = names
     return true;
   });
 console.log(greatIDs);
+
+/**
+ * The find() method of Array instances returns the first element in the provided array that satisfies the provided testing function.
+ * If no values satisfy the testing function, undefined is returned.
+ * If you need the index of the found element in the array, use findIndex().
+ * If you need to find if a value exists in an array, use includes(). Again, it checks each element for equality with the value instead of using a testing function.
+ * If you need to find if any element satisfies the provided testing function, use some().
+ * If you need to find all elements that satisfy the provided testing function, use filter().
+ * If you need the index of a value, use `indexOf(). its similar to findIndex(), byt checks each element for equalitywith the value instead of using a testing function.)
+ */
+
+//Find an object in an array by one of its properties
+const inventory = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "cherries", quantity: 5 },
+]
+
+// function isCherries(fruits) {
+//   return fruits.name === "cherries"
+// }
+
+// console.log(inventory.find(isCherries));
+
+//Using arrow functions & Destructuring
+const result1 = inventory.find(({ name }) => name === 'cherries');
+console.log(result1)
+
+//2. Find the first number in an array
+function isPrimeNUmber(el, index, arrrayy) {
+  let start = 2;
+  while (start <= Math.sqrt(el)) {
+    if (el % start++ < 1) {
+      return false;
+    }
+  }
+  return el > 1;
+}
+
+console.log([4, 6, 8, 12].find(isPrime));
+console.log([4, 5, 8, 12].find(isPrime));
+
+const nambers = [3, -1, 1, 4, 1, 5, 9, 2, 6];
+const firstTrough = nambers.filter((num) => num > 0).find((num, index, array) => {
+  if(index > 0 && num >= array[index - 1]) return false;
+  if ( index < array.length - 1 && num >= array[index + 1]) return false;
+  return true
+});
+console.log(firstTrough);
+
+//Find the index of the first prime number in an array
+const isPrimee = (element) => {
+  if (element % 2 === 0 || element < 2) {
+    return false;
+  }
+  for (let factor = 3; factor < Math.sqrt(element); factor += 2) {
+    if (element % factor === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log([4, 6, 8, 9, 12].findIndex(isPrimee));
+console.log([4, 6, 7, 9, 12].findIndex(isPrime));
+
+// Find last object in an array matching on element properties
+
+const inventory1 = [
+  { name: "apples", quantity: 2 },
+  { name: "bananas", quantity: 0 },
+  { name: "fish", quantity: 1 },
+  { name: "cherries", quantity: 5 },
+];
+
+const isNotEnough = (item) => {
+  return item.quantity < 2;
+}
+
+console.log(inventory1.findLast(isNotEnough));
+
+
+//Find the last prime number in an array
+const isItPrime = (element) => {
+  if (element % 2 === 0 || element < 2) {
+    return false;
+  }
+  for (let factor = 3; factor < Math.sqrt(element); factor += 2) {
+    if (element % factor === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log([4, 6, 8, 12].findLast(isPrime));
+console.log([4, 5, 7, 8, 9, 11, 12].findLast(isPrime)); 
+console.log([4, 6, 8, 12].findLastIndex(isPrime));
+console.log([4, 5, 7, 8, 9, 11, 12].findLastIndex(isPrime));
+
+/**
+ * FLAT
+ * The flat() method of array instances creates a new array with all sub-aray elements concatenated into it recursively upto the specified depth
+ */
+const arrar1 = [1, 2, [3, 4]];
+console.log(arrar1.flat());
+
+const arrar2 = [1, 2, [3, 4, [5, 6]]];
+console.log(arrar2.flat());
+
+const arr3 = [1, 2, [3, 4, [5, 6]]];
+console.log(arr3.flat(2));
+
+const arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+console.log(arr4.flat(Infinity));
+
+/**
+ * FLATMAP()
+ * The flatMap() method of Array instances returns a new array formed by applying a given callback function to each element of the array, 
+ * and then flattening the result by one level. 
+ * It is identical to a map() followed by a flat() of depth 1 (arr.map(...args).flat()), but slightly more efficient than calling those two methods separately.
+ */
+
+const arrayF = [1, 2, 3, 4];
+arrayF.flatMap((x) => [x, x * 2]);
+const n = arrayF.length;
+const acc = new Array(n * 2);
+
+for (let i = 0; i < n; i++) {
+  const x = arrayF[i];
+  acc[i * 2] = x;
+  acc[i * 2 + 1] = x * 2;
+}
