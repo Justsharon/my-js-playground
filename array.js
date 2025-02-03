@@ -300,3 +300,102 @@ for (let i = 0; i < n; i++) {
   acc[i * 2] = x;
   acc[i * 2 + 1] = x * 2;
 }
+
+/**
+ * forEach()
+ * executes a provided function once for each array element
+ * forEach() expects a synchronous function — it does not wait for promises. 
+ * Make sure you are aware of the implications while using promises (or async functions) as forEach callbacks.
+ */
+
+const ratings = [4, 6, 7, 9, 8 ];
+let sum = 0;
+const sumFuction = async (a, b) => a + b;
+
+ratings.forEach(async (rating) => {
+  sum = await sumFuction(sum, rating);
+});
+
+console.log(sum);
+// Naively expected output: 34
+// Actual output: 0
+
+//Converting a for loop to forEach
+
+const items = ["item1", "item2", "item3"];
+const copyItems = [];
+
+for (let i = 0; i < items.length; i++) {
+  copyItems.push(items[i])  
+}
+
+items.forEach((item) => {
+  copyItems.push(item)
+});
+
+/**
+ * includes();
+ *  determines whether an array includes a certain value among its entries, 
+ * returning true or false as appropriate.
+ */
+console.log([1, 2, 3].includes(2))
+
+/**
+ * The indexOf() method compares searchElement to elements of the array using strict equality (the same algorithm used by the === operator). 
+ * NaN values are never compared as equal, so indexOf() always returns -1 when searchElement is NaN.
+ */
+console.log(items.indexOf("item2"));
+
+//Finding all the occurrences of an element
+const indices = [];
+const alphabets = ["a", "b", "a", "c", "a", "d"];
+const element = "a";
+let idx = alphabets.indexOf(element);
+
+while (idx !== -1) {
+  indices.push(idx);
+  idx = alphabets.indexOf(element, idx + 1)
+}
+console.log(indices);
+
+//Finding if an element exists in the array or not and updating the array
+const updateVegetablesCollection = (veggies, veggie) => {
+  //if veggies index pf veggie does not exist -1 means it is not in the array
+  if (veggies.indexOf(veggie) === -1) {
+    veggies.push(veggie);
+    console.log(`New veggies collection is: ${veggies}`);
+  } else {
+    console.log(`${veggie} already exists in the veggies collection.`);
+  }
+}
+
+const veggies = ["potato", "tomato", "chillies", "green-pepper"];
+console.log(updateVegetablesCollection(veggies, "spinach"));
+console.log(updateVegetablesCollection(veggies, "spinach"));
+
+/**
+ * join()
+ * The join() method of Array instances creates and returns a new string by concatenating all of the elements in this array, 
+ * separated by commas or a specified separator string. 
+ * If the array has only one item, then that item will be returned without using the separator.
+ */
+
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+console.log(matrix.join("."));
+console.log(matrix.join(";"));
+console.log(matrix.join());
+
+/**
+ * keys()
+ * The keys() method of Array instances returns a new array iterator object that contains the keys for each index in the array.
+ */
+const iterator1 = alphabets.keys();
+
+for(const key of iterator1) {
+  console.log(key)
+};
