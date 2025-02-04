@@ -77,20 +77,22 @@ console.log(isSubset([1, 2, 3, 4, 5, 6, 7], [5, 7, 6]));
  */
 
 const numbers = [-2, 4, -8, 16, -32];
-const isIncreasing = numbers.filter((num) => num > 0).every((num, idx, arr) => {
+const isIncreasing = numbers
+  .filter((num) => num > 0)
+  .every((num, idx, arr) => {
     if (idx === 0) return true;
     return num > arr[idx - 1];
-});
+  });
 
 console.log(isIncreasing);
 
 /**
  * Filter
- * creates a shallow copy of a portion of a given array, 
+ * creates a shallow copy of a portion of a given array,
  * filtered down to just the elements from the given array that pass the test implemented by the provided function.
  */
 
-const words = ['spray', 'elite', 'exuberant', 'destruction', 'present'];
+const words = ["spray", "elite", "exuberant", "destruction", "present"];
 const result = words.filter((word) => word.length > 6);
 console.log(result);
 
@@ -98,13 +100,13 @@ console.log(result);
 const array = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
 function isPrime(num) {
-    for (let i = 2; num > i; i++) {
-        if (num % i === 0) {
-            return false;
-        }
-        return num > 1;
+  for (let i = 2; num > i; i++) {
+    if (num % i === 0) {
+      return false;
     }
-};
+    return num > 1;
+  }
+}
 console.log(array.filter(isPrime));
 
 /**
@@ -113,24 +115,24 @@ console.log(array.filter(isPrime));
  */
 
 const arrr = [
-    { id: 15 },
-    { id: -1 },
-    { id: 0 },
-    { id: 3 },
-    { id: 12.2 },
-    {},
-    { id: null },
-    { id: NaN },
-    { id: "undefined" },
+  { id: 15 },
+  { id: -1 },
+  { id: 0 },
+  { id: 3 },
+  { id: 12.2 },
+  {},
+  { id: null },
+  { id: NaN },
+  { id: "undefined" },
 ];
 
 let invalidEntries = 0;
 const filterById = (item) => {
-    if(Number.isFinite(item.id) && item.id !== 0) {
-        return true;
-    }
-    invalidEntries++;
-    return false;
+  if (Number.isFinite(item.id) && item.id !== 0) {
+    return true;
+  }
+  invalidEntries++;
+  return false;
 };
 
 const arrById = arrr.filter(filterById);
@@ -138,24 +140,24 @@ console.log("Filtered Array\n", arrById);
 console.log("Number of Invalid Entries =", invalidEntries);
 
 /**
- * Searching in array 
+ * Searching in array
  * use filter() to filter array content based on search criteria.
  */
 
 const fruits1 = ["apple", "banana", "grapes", "mango", "orange"];
 
 const filterItems = (arr4, query) => {
-    return arr4.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
-}
+  return arr4.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
+};
 
 console.log(filterItems(fruits1, "ap"));
-console.log(filterItems(fruits, "AN")); 
+console.log(filterItems(fruits, "AN"));
 
 /**
  * Using the third argument of callbackFn
- * The array argument is useful if you want to access another element in the array, 
- * especially when you don't have an existing variable that refers to the array. 
- * The following example first uses map() to extract the numerical ID from each name and 
+ * The array argument is useful if you want to access another element in the array,
+ * especially when you don't have an existing variable that refers to the array.
+ * The following example first uses map() to extract the numerical ID from each name and
  * then uses filter() to select the ones that are greater than its neighbors.
  */
 
@@ -184,7 +186,7 @@ const inventory = [
   { name: "apples", quantity: 2 },
   { name: "bananas", quantity: 0 },
   { name: "cherries", quantity: 5 },
-]
+];
 
 // function isCherries(fruits) {
 //   return fruits.name === "cherries"
@@ -193,8 +195,8 @@ const inventory = [
 // console.log(inventory.find(isCherries));
 
 //Using arrow functions & Destructuring
-const result1 = inventory.find(({ name }) => name === 'cherries');
-console.log(result1)
+const result1 = inventory.find(({ name }) => name === "cherries");
+console.log(result1);
 
 //2. Find the first number in an array
 function isPrimeNUmber(el, index, arrrayy) {
@@ -211,11 +213,13 @@ console.log([4, 6, 8, 12].find(isPrime));
 console.log([4, 5, 8, 12].find(isPrime));
 
 const nambers = [3, -1, 1, 4, 1, 5, 9, 2, 6];
-const firstTrough = nambers.filter((num) => num > 0).find((num, index, array) => {
-  if(index > 0 && num >= array[index - 1]) return false;
-  if ( index < array.length - 1 && num >= array[index + 1]) return false;
-  return true
-});
+const firstTrough = nambers
+  .filter((num) => num > 0)
+  .find((num, index, array) => {
+    if (index > 0 && num >= array[index - 1]) return false;
+    if (index < array.length - 1 && num >= array[index + 1]) return false;
+    return true;
+  });
 console.log(firstTrough);
 
 //Find the index of the first prime number in an array
@@ -229,7 +233,7 @@ const isPrimee = (element) => {
     }
   }
   return true;
-}
+};
 
 console.log([4, 6, 8, 9, 12].findIndex(isPrimee));
 console.log([4, 6, 7, 9, 12].findIndex(isPrime));
@@ -245,10 +249,9 @@ const inventory1 = [
 
 const isNotEnough = (item) => {
   return item.quantity < 2;
-}
+};
 
 console.log(inventory1.findLast(isNotEnough));
-
 
 //Find the last prime number in an array
 const isItPrime = (element) => {
@@ -261,9 +264,9 @@ const isItPrime = (element) => {
     }
   }
   return true;
-}
+};
 console.log([4, 6, 8, 12].findLast(isPrime));
-console.log([4, 5, 7, 8, 9, 11, 12].findLast(isPrime)); 
+console.log([4, 5, 7, 8, 9, 11, 12].findLast(isPrime));
 console.log([4, 6, 8, 12].findLastIndex(isPrime));
 console.log([4, 5, 7, 8, 9, 11, 12].findLastIndex(isPrime));
 
@@ -285,8 +288,8 @@ console.log(arr4.flat(Infinity));
 
 /**
  * FLATMAP()
- * The flatMap() method of Array instances returns a new array formed by applying a given callback function to each element of the array, 
- * and then flattening the result by one level. 
+ * The flatMap() method of Array instances returns a new array formed by applying a given callback function to each element of the array,
+ * and then flattening the result by one level.
  * It is identical to a map() followed by a flat() of depth 1 (arr.map(...args).flat()), but slightly more efficient than calling those two methods separately.
  */
 
@@ -304,11 +307,11 @@ for (let i = 0; i < n; i++) {
 /**
  * forEach()
  * executes a provided function once for each array element
- * forEach() expects a synchronous function — it does not wait for promises. 
+ * forEach() expects a synchronous function — it does not wait for promises.
  * Make sure you are aware of the implications while using promises (or async functions) as forEach callbacks.
  */
 
-const ratings = [4, 6, 7, 9, 8 ];
+const ratings = [4, 6, 7, 9, 8];
 let sum = 0;
 const sumFuction = async (a, b) => a + b;
 
@@ -326,22 +329,22 @@ const items = ["item1", "item2", "item3"];
 const copyItems = [];
 
 for (let i = 0; i < items.length; i++) {
-  copyItems.push(items[i])  
+  copyItems.push(items[i]);
 }
 
 items.forEach((item) => {
-  copyItems.push(item)
+  copyItems.push(item);
 });
 
 /**
  * includes();
- *  determines whether an array includes a certain value among its entries, 
+ *  determines whether an array includes a certain value among its entries,
  * returning true or false as appropriate.
  */
-console.log([1, 2, 3].includes(2))
+console.log([1, 2, 3].includes(2));
 
 /**
- * The indexOf() method compares searchElement to elements of the array using strict equality (the same algorithm used by the === operator). 
+ * The indexOf() method compares searchElement to elements of the array using strict equality (the same algorithm used by the === operator).
  * NaN values are never compared as equal, so indexOf() always returns -1 when searchElement is NaN.
  */
 console.log(items.indexOf("item2"));
@@ -354,7 +357,7 @@ let idx = alphabets.indexOf(element);
 
 while (idx !== -1) {
   indices.push(idx);
-  idx = alphabets.indexOf(element, idx + 1)
+  idx = alphabets.indexOf(element, idx + 1);
 }
 console.log(indices);
 
@@ -367,7 +370,7 @@ const updateVegetablesCollection = (veggies, veggie) => {
   } else {
     console.log(`${veggie} already exists in the veggies collection.`);
   }
-}
+};
 
 const veggies = ["potato", "tomato", "chillies", "green-pepper"];
 console.log(updateVegetablesCollection(veggies, "spinach"));
@@ -375,8 +378,8 @@ console.log(updateVegetablesCollection(veggies, "spinach"));
 
 /**
  * join()
- * The join() method of Array instances creates and returns a new string by concatenating all of the elements in this array, 
- * separated by commas or a specified separator string. 
+ * The join() method of Array instances creates and returns a new string by concatenating all of the elements in this array,
+ * separated by commas or a specified separator string.
  * If the array has only one item, then that item will be returned without using the separator.
  */
 
@@ -396,6 +399,46 @@ console.log(matrix.join());
  */
 const iterator1 = alphabets.keys();
 
-for(const key of iterator1) {
-  console.log(key)
-};
+for (const key of iterator1) {
+  console.log(key);
+}
+/*
+ *The lastIndexOf() method of array instances returns the last index
+ *at which a given element can be found in the array,
+ *or -1 if it is not present
+ */
+
+const animals = ["Dodo", "Tiger", "Penguin", "Dodo"];
+console.log(animals.lastIndexOf("Dodo"));
+console.log(animals.lastIndexOf("Tiger"));
+
+/*
+map() method of array instances creates a new array populated with
+the results of calling a provided function on every element in the calling array
+*/
+
+const arrayy1 = [1, 4, 9, 16];
+const map1 = arrayy1.map((x) => x * 2);
+const roots = arrayy1.map((num) => Math.sqrt(num));
+console.log(map1);
+console.log(roots);
+
+console.log(["1", "2", "3"].map((str) => parseInt(str, 10)));
+//or use Number() function
+//But unlike parseInt(), Number() will also return a float or (resolved) exponential notation:
+console.log(["1", "2", "3"].map(Number));
+const filteredNumbers = arrayy1.map((num, index) => {
+  if (index < 3) {
+    return num;
+  }
+});
+console.log(filteredNumbers);
+
+const cart = [5, 15, 25];
+let total = 0;
+const withTax = cart.map((cost) => {
+  total += cost;
+  return cost * 1.2;
+});
+console.log(withTax);
+console.log(total);
