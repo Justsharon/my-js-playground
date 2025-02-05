@@ -442,3 +442,80 @@ const withTax = cart.map((cost) => {
 });
 console.log(withTax);
 console.log(total);
+/**
+pop()
+This method of array instances removes the last element from an array
+and returns that element. THis method changes the length of the array
+
+*/
+const plants = ["broccoli", "cauliflower", "cabbage", "kale", "tomato"];
+console.log(plants.pop());
+
+const arrayLike = {
+  length: 3,
+  unrelated: "foo",
+  2: 4,
+};
+
+console.log(Array.prototype.pop.call(arrayLike));
+
+//Using an oobject in an array like fashion
+const collection = {
+  length: 0,
+  addElements(...elements) {
+    return [].push.call(this, ...elements);
+  },
+  removeElement() {
+    return [].pop.call(this);
+  },
+};
+
+collection.addElements(10, 20, 30);
+console.log(collection.length);
+collection.removeElement();
+console.log(collection.length);
+/*
+push()
+this method adds a specified element to the end of the array and
+returns the new length of the array
+*/
+const animals1 = ["pigs", "goats", "sheep"];
+const count = animals1.push("cows");
+console.log(count);
+
+const vegetables = ["parsnip", "potato"];
+const moreVegs = ["celery", "beetroot"];
+vegetables.push(...moreVegs);
+console.log(vegetables);
+
+/*
+The reduce() method of array instances executes a user supplied reducer
+callback function on each element of the array, in order, passing in  the return
+value from the calculations on the preceding element
+*/
+
+const array1 = [1, 2, 3, 4];
+const initialValue = 0;
+const sumWithInitial = array1.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  initialValue,
+);
+
+console.log(sumWithInitial);
+
+//reduce() works without an  initial value
+const arrayA = [15, 16, 17, 18, 19];
+
+const reducer = (accumulator, currentValue, index) => {
+  const returns = accumulator + currentValue;
+  console.log(
+    `accumulator: ${accumulator}, currentValue: ${currentValue}, index: ${index}, returns: ${returns}`,
+  );
+  return returns;
+};
+console.log(arrayA.reduce(reducer));
+
+//with initial value
+console.log(
+  arrayA.reduce((accumulator, currentValue) => accumulator + currentValue, 10),
+);
