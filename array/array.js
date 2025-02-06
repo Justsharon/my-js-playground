@@ -634,3 +634,38 @@ data.sort((a, b) => {
   // names must be equal
   return 0;
 });
+//splice()
+//changes the contents of an array by removing or
+//replacing existing elements and or adding new elements in place
+//params: start, deleteCount(integer indicating the number of elements after position is specified by start then all the elements from start to the end of the array will be deleted. )
+
+const months = ["Jan", "March", "April", "June"];
+months.splice(1, 0, "Feb");
+console.log(months);
+months.splice(4, 1, "May");
+console.log(months);
+
+//toLocaleString()
+/*
+The elements of the array are converted to strings using their toLocaleString methods.
+For example, this snippet implicitly calls the Number.prototype.toLocaleString() method
+to display the currency for the strings and numbers in the prices array:
+*/
+const prices = ["￥7", 500, 8123, 12];
+console.log(
+  prices.toLocaleString("ja-JP", { style: "currency", currency: "JPY" }),
+);
+
+/*
+toSorted()
+method of Array instances is the copying version of the sort() method.
+It returns a new array with the elements sorted in ascending order.
+*/
+const months1 = ["Mar", "Jan", "Feb", "Dec"];
+const sortedMonths = months1.toSorted();
+console.log(sortedMonths);
+
+const values = [1, 10, 21, 2];
+const sortedValues = values.toSorted((a, b) => b - a);
+// const sortedValues = values.toSorted((a, b) => b - a); sorted in descending order
+console.log(sortedValues);
