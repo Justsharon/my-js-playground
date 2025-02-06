@@ -519,3 +519,118 @@ console.log(arrayA.reduce(reducer));
 console.log(
   arrayA.reduce((accumulator, currentValue) => accumulator + currentValue, 10),
 );
+
+//Function sequential ppiping
+const pipe =
+  (...functions) =>
+  (initialValue) =>
+    functions.reduce((acc, fn) => fn(acc), initialValue);
+const double = (x) => 2 * x;
+const triple = (x) => 3 * x;
+const quadruple = (x) => 4 * x;
+
+const multiply6 = pipe(double, triple);
+const multiply9 = pipe(triple, triple);
+const multiply16 = pipe(quadruple, quadruple);
+const multiply24 = pipe(double, triple, quadruple);
+
+console.log(multiply6(6));
+console.log(multiply9(9));
+console.log(multiply16(6));
+console.log(multiply24(10));
+
+//Reverse()
+//The reverse() method of Array instances reverses an array in place
+//and returns the reference to the same array,
+//the first array element now becoming the last, and the last array element becoming the first.
+const reversed = [...vegetables].reverse();
+console.log(reversed[0]);
+console.log(vegetables[0]);
+
+/*
+shift()
+this method of Array instances removes the first element from an array and returns that removed element
+*/
+
+const myFish = ["angel", "clown", "mandarin", "surgeon"];
+console.log("myFish before:", myFish);
+const shifted = myFish.shift();
+console.log("myFish after:", myFish);
+console.log("Removed this element:", shifted);
+
+/*
+slice()
+returns a shallow copy of a portion of an array into anew array object
+selected from start to end(end not included)where start and end represents index of items in that array
+does not modify the original array
+When using a negative index with the slice method,
+negative indices are counted from the end of the array,
+starting at -1 for the last element, -2 for the second-to-last element,
+and so on. The negative index -2 itself is included because it is the starting point of the extraction.
+*/
+const mammals = ["ant", "bison", "camel", "duck", "elephant"];
+console.log(mammals.slice(2));
+console.log(mammals.slice(2, 4));
+console.log(mammals.slice(1, 5));
+console.log(mammals.slice(-2)); // extracts the last two elements of the array
+const fruitss = ["Apple", "Banana", "Orange", "Mango", "Pineapple"];
+const slicedFruitss = fruitss.slice(1, -1);
+console.log(slicedFruitss);
+/*
+// In this example, slice(1, -1) starts extracting from index 1 and goes up to,
+// but does not include, the element at index -1 (which is the last element).
+// This results in a new array with ['Banana', 'Orange', 'Mango'].
+// The slice method always excludes the element at the final index specified,
+// regardless of whether it is positive or negative.
+*/
+const myHonda = {
+  color: "red",
+  wheels: 4,
+  engine: { cylinders: 4, size: 2.2 },
+};
+const myCar = [myHonda, 2, "cherry condition", "purchased 1997"];
+const newCar = myCar.slice(0, 2);
+console.log("myCar =", myCar);
+console.log("newCar =", newCar);
+console.log("myCar[0].color =", myCar[0].color);
+console.log("newCar[0].color =", newCar[0].color);
+myHonda.color = "purple";
+console.log("The new color of my Honda is", myHonda.color);
+
+/**
+some()
+tests whether at least one element in the array passes the test implemented by the provided function.
+*/
+function isBiggerThan10(element, index, array) {
+  return element > 10;
+}
+console.log([2, 5, 8, 1, 4].some(isBiggerThan10));
+console.log([12, 5, 8, 1, 4].some(isBiggerThan10));
+
+//sort()
+const data = [
+  { name: "Edward", value: 21 },
+  { name: "Sharpe", value: 37 },
+  { name: "And", value: 45 },
+  { name: "The", value: -12 },
+  { name: "Magnetic", value: 13 },
+  { name: "Zeros", value: 37 },
+];
+
+// sort by value
+data.sort((a, b) => a.value - b.value);
+
+// sort by name
+data.sort((a, b) => {
+  const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+});
