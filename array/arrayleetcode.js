@@ -62,3 +62,30 @@ const findNumbers = function (nums) {
 };
 console.log(findNumbers([12, 345, 2, 6, 7896]));
 console.log(findNumbers([555, 901, 482, 1771]));
+
+//squares of a sorted array
+/*
+Given an integer array nums sorted in non-decreasing order,
+return an array of the squares of each number sorted in a non decreasing order
+input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+*/
+//solution a
+const sortedSquares = function (nums) {
+  const result = nums.map((num) => num * num);
+  return result.toSorted((a, b) => a - b);
+};
+console.log(sortedSquares([-4, -1, 0, 3, 10]));
+
+//solution b
+const sortedSquares1 = function (nums) {
+  let result = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    const squared = num * num;
+    result.push(squared);
+  }
+  return result.sort((a, b) => a - b);
+};
+console.log(sortedSquares1([-4, -1, 0, 3, 10]));
