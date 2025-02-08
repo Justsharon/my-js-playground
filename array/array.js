@@ -549,6 +549,14 @@ console.log(vegetables[0]);
 
 /*
 shift()
+To insert an element at the start of an Array,
+we'll need to shift all other elements in the Array to the right by one index to create space for the new element.
+This is a very costly operation, since each of the existing elements has to be shifted one step to the right.
+The need to shift everything implies that this is not a constant time operation.
+In fact, the time taken for insertion at the beginning of an Array
+will be proportional to the length of the Array.
+In terms of time complexity analysis, this is a linear time complexity:
+O(N), where N is the length of the Array.
 this method of Array instances removes the first element from an array and returns that removed element
 */
 
