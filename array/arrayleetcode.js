@@ -148,3 +148,46 @@ let nums1 = [1, 2, 3, 0, 0, 0];
 let nums2 = [2, 5, 6];
 merge(nums1, 3, nums2, 3);
 console.log(nums1);
+/*
+Remove Element:
+Given an integer array `nums` and an integer `val`,remove all occurrences of `val` in `nums` in place
+The order of the elements may be changed.Then return the number of elements in nums which are not equal to val
+Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+Return k.
+*/
+// loop through all el to iterate through nums and check if an element is not equal to val.
+// If an element is not val, move it to the k-th position and increment k.
+// k stores the count of elements that are not val. This is returned after the loop finishes.
+const removeElement = function (nums, val) {
+  let k = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      // Move the non-val element to the front
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+  return k;
+};
+let nums = [3, 2, 2, 3];
+let val = 3;
+console.log(removeElement(nums, val));
+
+//solution2
+const removeElement1 = function (nums, val) {
+  let newArray = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      newArray.push(nums[i]); //add non-value els
+    }
+  }
+  // Copy elements from newArray back to nums
+  for (let i = 0; i < newArray.length; i++) {
+    nums[i] = newArray[i];
+  }
+  return newArray.length;
+};
+nums = [3, 2, 2, 3];
+val = 3;
+console.log(removeElement1(nums, val));
