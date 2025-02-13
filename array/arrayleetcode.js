@@ -174,7 +174,7 @@ let nums = [3, 2, 2, 3];
 let val = 3;
 console.log(removeElement(nums, val));
 
-//solution2
+//solution2(this solution is not ideal since it creates a new array)
 const removeElement1 = function (nums, val) {
   let newArray = [];
   for (let i = 0; i < nums.length; i++) {
@@ -191,3 +191,81 @@ const removeElement1 = function (nums, val) {
 nums = [3, 2, 2, 3];
 val = 3;
 console.log(removeElement1(nums, val));
+
+//Deletion
+/*
+cases:
+1. Deleting the last element of the Array.pop()very fast (O(1)).
+2. Deleting the first element of the Array.shift() very slow  O(N) in time complexity
+3. Deletion at any given index.splice(index, count)
+*/
+
+/*
+Remove Duplicates from Sorted Array exercise
+Given an integer array `nums` sorted in non-decreasing order,
+remove the duplicates in-place such that each unique element appears only once.
+The relative order of the elements should be kept the same.
+Then return the number of unique elements in nums.
+Consider the number of unique elements of nums to be k, to get accepted,
+you need to do the following things:
+Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially.
+The remaining elements of nums are not important as well as the size of nums.
+Return k.
+*/
+
+const removeDuplicates = function (nums) {
+  if (nums.length === 0) return 0;
+  let k = 1; //pointer for the next unique item
+  for (let i = 1; i < nums.length; i++) {
+    //check whether the current element nums[i] is different from the previous element(nums[i-1])
+    if (nums[i] !== nums[i - 1]) {
+      nums[k] = nums[i];
+      k++;
+    }
+  }
+  return k;
+
+  //solution2
+  //let k = 0
+  //let seen = new Set();
+  //nums.forEach((element) => {
+  //if (!seen.has(element)) { seen.add(element); k++}
+  //})
+  //return k
+};
+console.log(
+  "removed count is",
+  removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]),
+);
+
+//if you were to return the array containing nus with no duplicates this would be the solution
+const removeDuplicates1 = function (nums) {
+  let result = [];
+  nums.forEach((element, index) => {
+    if (nums.indexOf(element) === index) {
+      result.push(element);
+    }
+  });
+  return result;
+};
+console.log("New array is", removeDuplicates1([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+
+const removeDuplicatesb = (nums) => {
+  let newArray = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (!newArray.includes(nums[i])) {
+      newArray.push(nums[i]);
+    }
+  }
+  /*
+  option 2
+  for(const item of nums) {
+  if new array does not include item
+    if (!newArray.includes(item) === -1) {
+      newArray.push(item)
+    }
+  }
+  */
+  return newArray;
+};
+console.log("New array is", removeDuplicatesb([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
