@@ -225,7 +225,7 @@ const removeDuplicates = function (nums) {
   }
   return k;
 
-  //solution2
+  //solution2(will work well for a not sorted array)
   //let k = 0
   //let seen = new Set();
   //nums.forEach((element) => {
