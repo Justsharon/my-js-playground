@@ -677,3 +677,34 @@ const values = [1, 10, 21, 2];
 const sortedValues = values.toSorted((a, b) => b - a);
 // const sortedValues = values.toSorted((a, b) => b - a); sorted in descending order
 console.log(sortedValues);
+
+/*
+Challenge 2:
+Given an array of strings, return an array where
+the first letter of each string is capitalized
+*/
+
+const namess = ["alice", "bob", "charlie", "danielle"].map(
+  (name) => name[0].toUpperCase() + name.slice(1),
+);
+
+/*
+Challenge 3:
+Given an array of strings, return an array of strings that wraps each
+of the original strings in an HTML-like <p></p> tag.
+
+E.g. given: ["Bulbasaur", "Charmander", "Squirtle"]
+return: ["<p>Bulbasaur</p>", "<p>Charmander</p>", "<p>Squirtle</p>"]
+*/
+
+const pokemon = ["Bulbasaur", "Charmander", "Squirtle"].map((poke) => {
+  return `<p>${poke}</p>`;
+});
+
+// const ninjaTurtles = ["Donatello", "Michaelangelo", "Rafael", "Leonardo"].map((ninjaTurtle) => <h2>{ninjaTurtle}</h2>)
+//     return (
+//         <main>
+// react stuff
+//             {ninjaTurtles}
+//         </main>
+//     )
