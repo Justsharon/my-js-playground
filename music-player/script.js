@@ -102,6 +102,25 @@ let userData = {
   songCurrentTime: 0,
 };
 
+//Define a playSong function using const.
+//The function should take an id parameter
+//which will represent the unique identifier of the song you want to play.
+
+const playSong = (id) => {
+  //Use const to create a variable named song and assign it result of the find() method call on the userData?.songs array. Use song as the parameter of the find() callback and check if song.id is strictly equal to id.
+  //This will iterate through the userData?.songs array, searching for a song that corresponds to the id passed into the playSong function.
+  const song = userData?.songs.find((song) => song.id === id);
+  audio.src = song.src;
+  audio.title = song.title;
+  //Before playing the song, you need to make sure it starts from the beginning. This can be achieved by the use of the currentTime property on the audio object.
+
+  if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
+    audio.currentTime = 0;
+  } else {
+    audio.currentTime = userData?.songCurrentTime;
+  }
+  userData.currentSong = song;
+};
 //to display songs in the ui create a function that takes an arrray as parameter
 const renderSongs = (array) => {
   //The map() method is used to iterate through an array and return a new array. It's helpful when you want to create a new array based on the values of an existing array.
@@ -126,4 +145,17 @@ const renderSongs = (array) => {
 
 renderSongs(userData?.songs);
 
-const sortSongs = () => {};
+const sortSongs = () => {
+  userData?.songs.sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+    return 0;
+  });
+  return userData?.songs;
+};
+
+renderSongs(sortSongs());
